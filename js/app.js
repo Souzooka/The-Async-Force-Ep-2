@@ -8,3 +8,8 @@ function getData(source, property, element, eFunc) {
   oReq.open('GET', source);
   oReq.send();
 }
+
+document.querySelector('#requestResourceButton')
+  .addEventListener ('onclick', function() {
+    //TODO
+  });
