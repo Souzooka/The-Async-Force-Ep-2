@@ -9,16 +9,6 @@ function getData(source, element, option, eFunc) {
   oReq.send();
 }
 
-document.querySelector('#requestResourceButton')
-  .addEventListener ('click', function() {
-    const option = document.querySelector('#resourceType').value;
-    const pageId = document.querySelector('#resourceId').value;
-    const container = document.querySelector('contentContainer');
-    clearInfo();
-    getData(`http://swapi.co/api/${option}/${pageId}/`,
-            container, option, addDataToPage);
-  });
-
 function addDataToPage(source, data, element, option) {
   if (data.detail === "Not found") {
     displayError(source);
@@ -67,3 +57,13 @@ function displayError(source) {
   error.style['background-color'] = '#FF5050';
   contentContainer.appendChild(error);
 }
+
+document.querySelector('#requestResourceButton')
+  .addEventListener ('click', function() {
+    const option = document.querySelector('#resourceType').value;
+    const pageId = document.querySelector('#resourceId').value;
+    const container = document.querySelector('contentContainer');
+    clearInfo();
+    getData(`http://swapi.co/api/${option}/${pageId}/`,
+            container, option, addDataToPage);
+  });
