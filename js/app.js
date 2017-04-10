@@ -84,7 +84,31 @@ function addPeople(data, element) {
 }
 
 function addStarships(data, element) {
+  const name = document.createElement('h2');
+  const manufacturer = document.createElement('p');
+  const shipClass = document.createElement('p');
+  const filmsList = document.createElement('ul');
 
+  filmsList.id = 'filmsList';
+
+  name.innerHTML = data.name;
+  manufacturer.innerHTML = data.manufacturer;
+  shipClass.innerHTML = data.starship_class;
+
+  element.style.display = 'none';
+
+  element.appendChild(name);
+  element.appendChild(manufacturer);
+  element.appendChild(shipClass);
+  element.appendChild(filmsList);
+
+  if (data.films.length === 0) {
+    element.style.display = 'block';
+  } else {
+    for (let i = 0; i < data.films.length; ++i) {
+      getData(data.films[i], element, data.films, addFilms);
+    }
+  }
 }
 
 // secondary functions
