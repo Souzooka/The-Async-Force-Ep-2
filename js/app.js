@@ -14,12 +14,12 @@ document.querySelector('#requestResourceButton')
     const option = document.querySelector('#resourceType').value;
     const pageId = document.querySelector('#resourceId').value;
     const container = document.querySelector('contentContainer');
+    clearInfo();
     getData(`http://swapi.co/api/${option}/${pageId}/`,
             container, option, addDataToPage);
   });
 
 function addDataToPage(source, data, element, option) {
-  clearInfo();
   if (data.detail === "Not found") {
     displayError(source);
   } else {
@@ -40,10 +40,10 @@ function addDataToPage(source, data, element, option) {
 }
 
 function clearInfo() {
-  const infoContainer = document.querySelector('#infoContainer');
-  if (infoContainer) {
-    while (infoContainer.firstChild) {
-      infoContainer.removeChild(infoContainer.firstChild);
+  const contentContainer = document.querySelector('#contentContainer');
+  if (contentContainer) {
+    while (contentContainer.firstChild) {
+      contentContainer.removeChild(contentContainer.firstChild);
     }
   }
 }
@@ -62,5 +62,8 @@ function addStarships(data, element) {
 }
 
 function displayError(source) {
-  console.log(source);
+  const error = document.createElement('p');
+  error.innerHTML = `Error: Fetching resource: ${source} NOT FOUND`;
+  error.style['background-color'] = '#FF5050';
+  contentContainer.appendChild(error);
 }
