@@ -19,6 +19,7 @@ document.querySelector('#requestResourceButton')
   });
 
 function addDataToPage(source, data, element, option) {
+  clearInfo();
   if (data.detail === "Not found") {
     displayError(source);
   } else {
@@ -34,6 +35,15 @@ function addDataToPage(source, data, element, option) {
         break;
       default:
         break;
+    }
+  }
+}
+
+function clearInfo() {
+  const infoContainer = document.querySelector('#infoContainer');
+  if (infoContainer) {
+    while (infoContainer.firstChild) {
+      infoContainer.removeChild(infoContainer.firstChild);
     }
   }
 }
