@@ -50,16 +50,14 @@ function addPlanets(data, element) {
   terrain.innerHTML = data.terrain;
   population.innerHTML = data.population;
 
-  name.style.display = 'none';
-  terrain.style.display = 'none';
-  population.style.display = 'none';
+  element.style.display = 'none';
 
   element.appendChild(name);
   element.appendChild(terrain);
   element.appendChild(population);
   element.appendChild(filmsList);
 
-  for (let i = 0; i < data.films.length - 1; ++i) {
+  for (let i = 0; i < data.films.length; ++i) {
     getData(data.films[i], element, data.films, addFilms);
   }
 }
@@ -73,8 +71,7 @@ function addPeople(data, element) {
 
   // Even though the species is another request, we want all of the info
   // to be shown at one time rather than streamed in
-  name.style.display = 'none';
-  gender.style.display = 'none';
+  element.style.display = 'none';
 
   element.appendChild(name);
   element.appendChild(gender);
@@ -92,16 +89,20 @@ function addSpecies(source, data, element, option) {
   species.innerHTML = data.name || 'N/A';
   element.appendChild(species);
 
-  makeContentVisible(element);
+  element.style.display = 'block';
 }
 
 function addFilms(source, data, element, option) {
   const film = document.createElement('li');
   const filmsList = document.querySelector('#filmsList');
 
+  film.innerHTML = data.title;
+
+  filmsList.appendChild(film);
+
   // async hax since we can't use generators in the browser...
   if (filmsList.childNodes.length === option.length) {
-    makeContentVisible(element);
+    element.style.display = 'block';
   }
 }
 
