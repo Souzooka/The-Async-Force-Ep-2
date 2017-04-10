@@ -57,8 +57,12 @@ function addPlanets(data, element) {
   element.appendChild(population);
   element.appendChild(filmsList);
 
-  for (let i = 0; i < data.films.length; ++i) {
-    getData(data.films[i], element, data.films, addFilms);
+  if (data.films.length === 0) {
+    element.style.display = 'block';
+  } else {
+    for (let i = 0; i < data.films.length; ++i) {
+      getData(data.films[i], element, data.films, addFilms);
+    }
   }
 }
 
