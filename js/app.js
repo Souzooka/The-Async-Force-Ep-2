@@ -3,7 +3,7 @@ function getData(source, element, option, eFunc) {
 
   oReq.addEventListener('load', function() {
     const data = JSON.parse(this.responseText);
-    eFunc(data, element, option);
+    eFunc(aource, data, element, option);
   });
   oReq.open('GET', source);
   oReq.send();
@@ -18,6 +18,22 @@ document.querySelector('#requestResourceButton')
             container, option, addDataToPage);
   });
 
-function addDataToPage(data, element, option) {
+function addDataToPage(source, data, element, option) {
   console.log(data);
+}
+
+function addPlanets(data, element) {
+
+}
+
+function addPeople(data, element) {
+
+}
+
+function addStarships(data, element) {
+
+}
+
+function displayError(source) {
+
 }
