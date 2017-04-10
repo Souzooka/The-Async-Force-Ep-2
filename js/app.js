@@ -3,7 +3,7 @@ function getData(source, element, option, eFunc) {
 
   oReq.addEventListener('load', function() {
     const data = JSON.parse(this.responseText);
-    eFunc(aource, data, element, option);
+    eFunc(source, data, element, option);
   });
   oReq.open('GET', source);
   oReq.send();
@@ -19,10 +19,27 @@ document.querySelector('#requestResourceButton')
   });
 
 function addDataToPage(source, data, element, option) {
-  console.log(data);
+  if (data.detail === "Not found") {
+    displayError(source);
+  } else {
+    switch(option) {
+      case 'people':
+        addPeople(data, element);
+        break;
+      case 'planets':
+        addPlanets(data, element);
+        break;
+      case 'starships':
+        addStarships(data, element);
+        break;
+      default:
+        break;
+    }
+  }
 }
 
 function addPlanets(data, element) {
+  console.log('butts')
 
 }
 
@@ -35,5 +52,5 @@ function addStarships(data, element) {
 }
 
 function displayError(source) {
-
+  console.log(source);
 }
