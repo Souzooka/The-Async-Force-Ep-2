@@ -39,8 +39,29 @@ function clearInfo() {
 }
 
 function addPlanets(data, element) {
+  const name = document.createElement('h2');
+  const terrain = document.createElement('p');
+  const population = document.createElement('p');
+  const filmsList = document.createElement('ul');
 
+  filmsList.id = 'filmsList';
 
+  name.innerHTML = data.name;
+  terrain.innerHTML = data.terrain;
+  population.innerHTML = data.population;
+
+  name.style.display = 'none';
+  terrain.style.display = 'none';
+  population.style.display = 'none';
+
+  element.appendChild(name);
+  element.appendChild(terrain);
+  element.appendChild(population);
+  element.appendChild(filmsList);
+
+  for (let i = 0; i < data.films.length - 1; ++i) {
+    getData(data.films[i], element, data.films, addFilms);
+  }
 }
 
 function addPeople(data, element) {
@@ -68,20 +89,25 @@ function addStarships(data, element) {
 // secondary functions
 function addSpecies(source, data, element, option) {
   const species = document.createElement('p');
-  species.innerHTML = data.name;
+  species.innerHTML = data.name || 'N/A';
   element.appendChild(species);
+
   makeContentVisible(element);
 }
 
-function addFilm(source, data, element, option) {
-  makeContentVisible(element);
+function addFilms(source, data, element, option) {
+  const film = document.createElement('li');
+  const filmsList = document.querySelector('#filmsList');
+
+  // async hax since we can't use generators in the browser...
+  if (filmsList.childNodes.length === option.length) {
+    makeContentVisible(element);
+  }
 }
 
 // for when all data is retrieved
 function makeContentVisible(element) {
-  console.log(element)
   for (let i = 0; i < element.childNodes.length; ++i) {
-    console.log(i)
     element.childNodes[i].style.display = 'block';
   }
 }
