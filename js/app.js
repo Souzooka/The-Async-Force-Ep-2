@@ -65,7 +65,11 @@ function addStarships(data, element) {
 
 }
 
+// secondary functions
 function addSpecies(source, data, element, option) {
+  const species = document.createElement('p');
+  species.innerHTML = data.name;
+  element.appendChild(species);
   makeContentVisible(element);
 }
 
